@@ -236,7 +236,7 @@ try:
             prediction = model.predict(input_data_prepared)
 
             # Afficher la prédiction
-            st.success(f"Demande énergétique projetée : {prediction[0]:.2f}")
+            st.success(f"Demande énergétique projetée : {prediction[0]:.2f} Mega Watt")
 
             # Afficher la précision du modèle
             # st.write(f"Précision du modèle (Erreur quadratique moyenne, validation croisée) : {mean_cv_score:.2f}")
