@@ -47,6 +47,21 @@ def ensure_feature_consistency(df_input, columns_train):
             df_input[col] = 0  # Ajouter une colonne manquante avec une valeur par défaut
     return df_input[columns_train]
 
+def create_features(df):
+    # 1. Ratios
+    df['demande_par_habitant'] = df['demande_energetique_actuelle'] / df['population']
+    df['capacite_relative'] = df['capacite_installee_actuelle'] / df['demande_energetique_actuelle']
+
+    # 2. Interactions entre variables
+    df['ensoleillement_capacite'] = df['taux_ensoleillement'] * df['capacite_installee_actuelle']
+    df['stabilite_invest'] = df['stabilite_politique'] * df['potentiel_investissement']
+
+    # 4. Regroupement par 'country'
+    df['moyenne_demande_pays'] = df.groupby('country')['demande_energetique_actuelle'].transform('mean')
+    df['ecart_moyenne_pays'] = df['demande_energetique_actuelle'] - df['moyenne_demande_pays']
+
+    return df
+
 # Charger les données
 try:
     df = load_data()
@@ -161,21 +176,25 @@ try:
             st.pyplot(fig)
 
 
+
         elif plot_type == "Boxplot":
 
-            # Sélecteur pour les colonnes
+            # Sélecteur pour la colonne Y uniquement
 
-            x_column = st.selectbox("Colonne pour l'axe X", numeric_cols)
+            y_column = st.selectbox("Colonne à visualiser", numeric_cols)
 
-            y_column = st.selectbox("Colonne pour l'axe Y", numeric_cols)
+            st.subheader(f"Boxplot de `{y_column}`")
 
-            st.subheader(f"Boxplot de `{y_column}` en fonction de `{x_column}`")
+            # Créer le graphique
 
             fig, ax = plt.subplots(figsize=(10, 6))
 
-            sns.boxplot(data=df, x=x_column, y=y_column, ax=ax)
+            sns.boxplot(data=df, y=y_column, ax=ax)
+
+            # Afficher le graphique dans Streamlit
 
             st.pyplot(fig)
+
 
 
     elif page == "Prédiction":
@@ -217,9 +236,12 @@ try:
             })
 
             # Prétraitement des données
-            X_train = preprocess_dataframe(df)
+            train_df = df.copy()
+            X_train = preprocess_dataframe(train_df)
             columns_train = X_train.columns.tolist()
-            y_train = df['demande_energetique_projectee']
+            y_train = train_df['demande_energetique_projectee']
+
+
 
             # Créer et entraîner le modèle
             model = make_pipeline(StandardScaler(), MinMaxScaler(), Lasso(alpha=0.001))
