@@ -1,39 +1,4 @@
-```markdown
-# 📊 Prédiction de la Demande Énergétique en Afrique
 
-Cette application Streamlit permet d'analyser et de prédire la demande énergétique projetée dans différentes régions d'Afrique à partir de données démographiques, économiques et climatiques.
-
----
-
-## 🚀 Fonctionnalités
-
-### 1. **Aperçu des Données**
-- Affichage des dimensions du dataset.
-- Identification des colonnes avec des valeurs manquantes.
-- Visualisation des premières lignes et statistiques descriptives.
-
-### 2. **Analyse Exploratoire**
-- Histogrammes pour les variables numériques.
-- Matrice de corrélation avec des options de palettes de couleurs.
-- Boxplots pour visualiser la distribution des variables.
-
-### 3. **Prédiction de la Demande Énergétique**
-- Formulaire interactif pour saisir les caractéristiques de la région.
-- Modèle Lasso pour la prédiction.
-- Affichage de la demande énergétique projetée en Mega Watt.
-- Validation croisée pour évaluer les performances du modèle.
-
----
-
-## 📂 Structure du Projet
-
-```plaintext
-📦 project-directory
-├── 📜 README.md           # Ce fichier
-├── 📜 app.py              # Code principal de l'application Streamlit
-├── 📜 requirements.txt    # Dépendances Python nécessaires
-├── 📂 data
-│   └── train.csv          # Dataset utilisé pour l'analyse et l'entraînement
 ```
 
 ---
