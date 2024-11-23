@@ -100,7 +100,7 @@ Les données utilisées proviennent de [ce dataset](https://github.com/dataafriq
 
 ## 📜 Licence
 
-Ce projet est sous licence [MIT](LICENSE).
+Ce projet est entierement libre d'utilisation
 
 ---
 
@@ -115,16 +115,3 @@ Merci à [Data Afrique Hub](https://github.com/dataafriquehub) pour les données
 - Si vous rencontrez des problèmes, n'hésitez pas à ouvrir une [issue](https://github.com/votre-utilisateur/nom-du-repo/issues).
 - Cette application est en développement actif et peut être améliorée.
 ```
-
-### Étapes suivantes :
-1. Personnalisez les sections avec vos propres informations (nom du dépôt, lien GitHub, etc.).
-2. Ajoutez un fichier `requirements.txt` contenant les bibliothèques Python utilisées :
-   ```
-   streamlit
-   pandas
-   numpy
-   seaborn
-   matplotlib
-   scikit-learn
-   ```
-3. Déposez le fichier `README.md` dans la racine de votre projet.
